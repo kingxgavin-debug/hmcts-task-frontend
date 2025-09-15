@@ -2,58 +2,70 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+**HmctsTaskFrontend** is the Angular frontend for the HMCTS Task Manager application.  
+It provides a responsive UI for viewing, creating, updating, and deleting tasks, and communicates with a Spring Boot backend API.
 
-```bash
+## Development
+
+To start the development server:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
+Then open your browser at http://localhost:4200/. The app will reload automatically when source files are modified.
 
 ## Building
 
-To build the project run:
+To compile the project:
 
-```bash
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build artifacts will be stored in the dist/ directory. Production builds are optimized for performance.
 
-## Running unit tests
+## Code Generation
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To scaffold a new component:
 
-```bash
+ng generate component component-name
+
+For other schematics (e.g. directives, pipes):
+
+ng generate --help
+
+## Running Unit Tests
+
+Unit tests are executed using the Karma test runner:
+
 ng test
-```
 
-## Running end-to-end tests
+Basic smoke tests are implemented for key components and services.  
+Full coverage and logic testing will be expanded in future iterations.
 
-For end-to-end (e2e) testing, run:
+## End-to-End Testing
 
-```bash
-ng e2e
-```
+End-to-end (e2e) testing is not currently implemented in this project.  
+You may integrate frameworks such as Cypress or Playwright if needed.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Backend API Integration
 
-## Additional Resources
+The frontend communicates with the backend via the following endpoints:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Method | Endpoint         | Description         
+-------|------------------|---------------------
+GET    | /api/tasks       | Get all tasks     
+POST   | /api/tasks       | Create a new task   
+PUT    | /api/tasks/:id   | Update a task's Status       
+DELETE | /api/tasks/:id   | Delete a task       
+
+All requests are handled via Angular's HttpClient through the TaskService.
+
+## Submission Status
+
+This project is ready for submission and integration with the HMCTS backend.  
+Unit tests are in place and passing. End-to-end testing is deferred for future development.
+
+## Resources
+
+- Angular CLI Reference: https://angular.dev/tools/cli
+- Angular Docs: https://angular.dev

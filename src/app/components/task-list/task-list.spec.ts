@@ -1,23 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TaskListComponent } from './task-list';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TaskService } from '../../services/task';
+import { of } from 'rxjs';
 
-import { TaskList } from './task-list';
-
-describe('TaskList', () => {
-  let component: TaskList;
-  let fixture: ComponentFixture<TaskList>;
+describe('TaskListComponent', () => {
+  let component: TaskListComponent;
+  let fixture: ComponentFixture<TaskListComponent>;
+  let mockTaskService: jasmine.SpyObj<TaskService>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TaskList]
-    })
-    .compileComponents();
+    mockTaskService = jasmine.createSpyObj('TaskService', ['getAllTasks']);
+    mockTaskService.getAllTasks.and.returnValue(of([]));
 
-    fixture = TestBed.createComponent(TaskList);
+    await TestBed.configureTestingModule({
+      imports: [TaskListComponent, CommonModule, FormsModule, HttpClientTestingModule],
+      providers: [{ provide: TaskService, useValue: mockTaskService }]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TaskListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 });
