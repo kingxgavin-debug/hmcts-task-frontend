@@ -7,10 +7,24 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 **HmctsTaskFrontend** is the Angular frontend for the HMCTS Task Manager application.  
 It provides a responsive UI for viewing, creating, updating, and deleting tasks, and communicates with a Spring Boot backend API.
 
-## Development
+## Getting Started
 
-To start the development server:
+To clone and run this project locally:
 
+1. Install [Node.js](https://nodejs.org/) (v18+ recommended)
+2. Install Angular CLI:
+npm install -g @angular/cli	
+
+3. Clone from github
+git clone https://github.com/kingxgavin-debug/hmcts-task-frontend.git
+cd hmcts-task-frontend
+
+4. Install dependencies:
+npm install
+
+
+## Run
+To start the server:
 ng serve
 
 Then open your browser at http://localhost:4200/. The app will reload automatically when source files are modified.

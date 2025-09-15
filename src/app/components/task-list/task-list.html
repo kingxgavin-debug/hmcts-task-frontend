@@ -17,7 +17,7 @@
 </ng-container>
 
 <!-- Create Task Form -->
-<form (ngSubmit)="createTask()" #createForm="ngForm" class="table">
+<form (ngSubmit)="createTask(createForm)" #createForm="ngForm" class="table">
   <div class="table-row">
     <div class="table-data">
       <input

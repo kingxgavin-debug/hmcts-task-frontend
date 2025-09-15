@@ -5,6 +5,7 @@ import { TaskService, Task } from '../../services/task';
 import { Subject, Observable } from 'rxjs';
 import { switchMap, startWith } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -36,7 +37,10 @@ export class TaskListComponent implements OnInit {
 	isFutureDate(dateStr: string): boolean {
 	  const now = new Date();
 	  const input = new Date(dateStr);
-	  return input > now;
+	  now.setHours(0, 0, 0, 0);
+	  input.setHours(0, 0, 0, 0);
+
+	  return input >= now;
 	}
 
   ngOnInit(): void {
@@ -48,8 +52,8 @@ export class TaskListComponent implements OnInit {
 	  const yyyy = now.getFullYear();
 	  const mm = String(now.getMonth() + 1).padStart(2, '0');
 	  const dd = String(now.getDate()).padStart(2, '0');
-	  const hh = String(now.getHours()).padStart(2, '0');
-	  const min = String(now.getMinutes()).padStart(2, '0');
+	  const hh = '00';
+	  const min = '00';
 	  this.minDueDate = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
 
   }
@@ -62,7 +66,7 @@ export class TaskListComponent implements OnInit {
   }
 
   // Create task
-	createTask(): void {
+	createTask(form: NgForm): void {
 	  this.taskService.createTask(this.newTask).subscribe({
 		next: () => {
 		  this.newTask = {
@@ -71,6 +75,7 @@ export class TaskListComponent implements OnInit {
 			status: '',
 			dueDate: ''
 		  };
+		  form.resetForm();
 		this.errorMessages$.next({});
 		  this.refreshTrigger$.next();
 		},
